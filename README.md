@@ -2,7 +2,16 @@
 
 a [Sails v1](https://sailsjs.com) application
 
+This is a reproduction repo of a bug where session data is not correctly stored when using the io.socket client. See the run history in github actions to view failing runs.
 
+### Replicating locally
+To replicate locally:
+1. Clone this repo with `git clone https://github.com/itsalaidbacklife/sails-session-bug-reproduction`.
+2. Install dependencies with `npm ci`.
+3. Boot the application in one terminal/shell with `sails lift`.
+4. Open cypress in another terminal/shell with `npx cypress open`.
+5. Choose your browser of choice e.g. chrome in the cypress UI
+6. Click the `reproduction.cy.js` file in Cypress to run the test file and observe the failing results
 ### Links
 
 + [Sails framework documentation](https://sailsjs.com/get-started)
@@ -16,11 +25,4 @@ a [Sails v1](https://sailsjs.com) application
 
 This app was originally generated on Wed Aug 02 2023 09:54:37 GMT-0400 (Eastern Daylight Time) using Sails v1.2.5.
 
-<!-- Internally, Sails used [`sails-generate@2.0.0`](https://github.com/balderdashy/sails-generate/tree/v2.0.0/lib/core-generators/new). -->
-
-
-
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
 
