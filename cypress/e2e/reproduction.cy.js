@@ -1,7 +1,7 @@
 
 describe('Replication test', () => {
   beforeEach(() => {
-    cy.visit('/');
+    // cy.visit('/');
   });
 
   it('Sets session data using http', () => {
