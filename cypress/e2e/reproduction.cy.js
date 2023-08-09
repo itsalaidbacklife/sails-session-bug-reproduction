@@ -52,7 +52,7 @@ function testSocketSessions(val) {
 }
 
 describe('Replication Test - repeated tests', () => {
-  for (let i = 1; i<=400; i++) {
+  for (let i = 1; i<=1000; i++) {
     testSocketSessions(i);
   }
 });
