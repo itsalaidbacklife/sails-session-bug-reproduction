@@ -5,8 +5,9 @@ module.exports = {
     console.log(`\nSetting session: from ${reqType}`);
     console.log(req.signedCookies);
     console.log(req.session); // undefined when requesting with socket client
-    if (req.session) {
-      req.session.hasSession = true;
+    req.session.hasSession = true;
+    if (req.body.customVal) {
+      req.session.customVal = req.body.customVal;
     }
     return res.ok();
   },
