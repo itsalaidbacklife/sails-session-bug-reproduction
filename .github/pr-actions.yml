@@ -1,0 +1,55 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+    # Defaults + ready_for_review to trigger a re-run when a Draft PR is converted to a normal PR
+    # See: https://github.community/t/dont-run-actions-on-draft-pull-requests/16817/17
+    types: [opened, synchronize, reopened, ready_for_review]
+
+# See: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+permissions:
+  contents: read
+  pull-requests: read
+
+# Only allow one build per PR source branch to run at once, cancelling in-progress
+# builds when new builds arrive
+# See: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idconcurrency
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.13.2 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Install dependencies
+        uses: cypress-io/github-action@v2
+        with:
+          # Just perform install
+          runTests: false
+      # Lint before testing
+      - run: npm run lint
+      # Run e2e
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          # Already installed dependencies above
+          install: false
+          build: npm run build
+          start: npm start
+          config-file: cypress.config.js
+          # wait for 2 minutes for the server to respond
+          wait-on: 'http://localhost:1337'
+          wait-on-timeout: 120
+        env:
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.github-token }}
