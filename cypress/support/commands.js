@@ -25,7 +25,7 @@ Cypress.Commands.add('getSessionViaSocket', () => {
         return reject(new Error('Error getting session'));
       }
       if (!res?.hasSession) {
-        return reject(new Error(`Session data was not set; had value: ${res}`));
+        return reject(new Error(`Session data was not set; had value: ${JSON.stringify(res)}`));
       }
       return resolve(res);
     });
