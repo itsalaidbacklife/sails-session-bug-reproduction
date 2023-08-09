@@ -1,4 +1,4 @@
-name: PR Checks
+name: On push to main
 
 on:
   push:
