@@ -9,7 +9,8 @@ describe('Replication test', () => {
     cy.getSessionViaHttp();
   });
 
-  it.skip('Sets session data using socket', () => {
+  it('Sets session data using socket', () => {
     cy.setSessionViaSocket(); // type error because req.session is undefined
+    cy.getSessionViaSocket();
   });
 });
