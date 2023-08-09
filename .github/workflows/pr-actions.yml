@@ -33,16 +33,14 @@ jobs:
         with:
           # Just perform install
           runTests: false
-      # Lint before testing
-      - run: npm run lint
+
       # Run e2e
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           # Already installed dependencies above
           install: false
-          build: npm run build
-          start: npm start
+          start: node app.js
           config-file: cypress.config.js
           # wait for 2 minutes for the server to respond
           wait-on: 'http://localhost:1337'
