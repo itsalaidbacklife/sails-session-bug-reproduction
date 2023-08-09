@@ -10,13 +10,6 @@ permissions:
   contents: read
   pull-requests: read
 
-# Only allow one build per PR source branch to run at once, cancelling in-progress
-# builds when new builds arrive
-# See: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idconcurrency
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
   test:
     runs-on: ubuntu-latest
