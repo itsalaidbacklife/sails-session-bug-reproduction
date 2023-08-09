@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-    # Defaults + ready_for_review to trigger a re-run when a Draft PR is converted to a normal PR
-    # See: https://github.community/t/dont-run-actions-on-draft-pull-requests/16817/17
-    types: [opened, synchronize, reopened, ready_for_review]
 
 # See: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
 permissions:
