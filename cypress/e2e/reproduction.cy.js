@@ -1,5 +1,5 @@
 
-describe('Replication test', () => {
+describe('Replication test - Fundamentals', () => {
   beforeEach(() => {
     // cy.visit('/');
   });
@@ -39,5 +39,20 @@ describe('Replication test', () => {
     });
   });
 
+});
 
+function testSocketSessions(val) {
+  it('Sets session data using socket',
+  () => {
+    cy.setSessionViaSocket(val);
+    cy.getSessionViaSocket().then((res) => {
+      expect(res.customVal).to.eq(val);
+    });
+  });
+}
+
+describe('Replication Test - repeated tests', () => {
+  for (let i = 1; i<=400; i++) {
+    testSocketSessions(i);
+  }
 });
