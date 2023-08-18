@@ -35,6 +35,6 @@
   "author": "ryanemberling",
   "license": "",
   "engines": {
-    "node": "^12.18"
+    "node": "18.12.1"
   }
 }
