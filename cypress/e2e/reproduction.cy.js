@@ -4,6 +4,13 @@ describe('Replication test - Fundamentals', () => {
     // cy.visit('/');
   });
 
+  // THIS WORKS WHEN IT ISN'T THE ONLY TEST
+  it.only('Sets session data using socket after visiting the page', () => {
+    cy.visit('/');
+    cy.setSessionViaSocket();
+    cy.getSessionViaSocket();
+  });
+
   it('Sets session data using http', () => {
     cy.setSessionViaHttp();
     cy.getSessionViaHttp();
