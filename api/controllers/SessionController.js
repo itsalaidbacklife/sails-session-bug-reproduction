@@ -4,7 +4,7 @@ module.exports = {
     const reqType = req.isSocket ? 'socket' : 'http';
     console.log(`\nSetting session: from ${reqType}`);
     console.log(req.signedCookies);
-    console.log(req.session); // undefined when requesting with socket client
+    console.log(req.session);
     req.session.hasSession = true;
     if (req.body.customVal) {
       req.session.customVal = req.body.customVal;
